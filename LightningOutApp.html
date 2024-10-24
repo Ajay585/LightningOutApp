@@ -1,0 +1,34 @@
+<html>
+    <style>
+        h3 {
+            color: orange;
+        }
+    </style>
+    
+    <script src="https://edvenswatech-dev-ed.develop.my.site.com/bluecanvas/lightning/lightning.out.js"></script>
+
+    <div data-lightning-out="true"></div>
+
+    <script>
+        const appName = 'c:LightingOutApp';
+        const componentName = 'c:contactForm';
+        const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/bluecanvas';
+        const targetElement = document.querySelector('[data-lightning-out=""]');
+        const componentAttributes = {};
+
+        $Lightning.use(
+            appName,
+            function() {
+                $Lightning.createComponent(
+                    componentName,
+                    componentAttributes,
+                    targetElement,
+                    function(cmp) {
+                        console.log('lightning component created');
+                    }
+                );
+            },
+            LightningEndPoint
+        );
+    </script>
+</html>
