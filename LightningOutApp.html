@@ -1,19 +1,17 @@
 <html>
-    <style>
-        h3 {
-            color: orange;
-        }
-    </style>
-    
+
     <script src="https://edvenswatech-dev-ed.develop.my.site.com/bluecanvas/lightning/lightning.out.js"></script>
 
+    <!-- Correcting the target div -->
     <div data-lightning-out="true"></div>
 
     <script>
         const appName = 'c:LightingOutApp';
         const componentName = 'c:contactForms';
         const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/bluecanvas';
-        const targetElement = document.querySelector('[data-lightning-out=""]');
+        
+        // Correcting the selector to target the div with the attribute set to true
+        const targetElement = document.querySelector('[data-lightning-out="true"]');
         const componentAttributes = {};
 
         $Lightning.use(
