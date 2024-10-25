@@ -78,5 +78,39 @@
             },
             LightningEndPoint
         );
+
+           // Event listener to open the "Have Queries?" modal
+        document.getElementById('queriesLink').addEventListener('click', function() {
+            // Display the modal
+            document.getElementById('caseModal').style.display = 'block';
+
+            // Load Case Form Component inside the modal
+            $Lightning.use(
+                appName,
+                function() {
+                    $Lightning.createComponent(
+                        caseComponentName,
+                        componentAttributes,
+                        caseFormTargetElement,
+                        function(cmp) {
+                            console.log('Case form component created');
+                        }
+                    );
+                },
+                LightningEndPoint
+            );
+        });
+
+        // Close the modal when the close button is clicked
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('caseModal').style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('caseModal')) {
+                document.getElementById('caseModal').style.display = 'none';
+            }
+        };
     </script>
 </html>
