@@ -1,124 +1,30 @@
 <html>
-    <style>
-        h3 {
-            color: orange;
-        }
-
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%; /* Could be more or less */
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-    </style>
-
-    <!-- Lightning Out Script -->
+    
     <script src="https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/lightning/lightning.out.js"></script>
 
-    <!-- Main container for the Lightning components -->
+    <!-- Correcting the target div -->
     <div data-lightning-out="true"></div>
 
-    
-    <!-- "Have Queries?" link -->
-    <a href="javascript:void(0);" id="queriesLink">Have Queries?</a>
-
-    <!-- Modal for submitting a case -->
-    <div id="caseModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Submit a Case</h3>
-            <div id="caseFormContainer"></div>
-        </div>
-    </div>
-
     <script>
-        const appName = 'c:LightningOutApp';
+        const appName = 'c:LightingOutApp';
         const componentName = 'c:contactForms';
         const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/';
         const targetElement = document.querySelector('[data-lightning-out="true"]');
         const componentAttributes = {};
 
-
-        const caseComponentName = 'c:caseForm';        // Case form component
-        const caseFormTargetElement = document.querySelector('#caseFormContainer');
-
-
-        // Load Contact Form Component
         $Lightning.use(
             appName,
             function() {
                 $Lightning.createComponent(
-                    contactComponentName,
+                    componentName,
                     componentAttributes,
-                    contactFormTargetElement,
+                    targetElement,
                     function(cmp) {
-                        console.log('Contact form component created');
+                        console.log('lightning component created');
                     }
                 );
             },
             LightningEndPoint
         );
-
-        // Event listener to open the "Have Queries?" modal
-        document.getElementById('queriesLink').addEventListener('click', function() {
-            // Display the modal
-            document.getElementById('caseModal').style.display = 'block';
-
-            // Load Case Form Component inside the modal
-            $Lightning.use(
-                appName,
-                function() {
-                    $Lightning.createComponent(
-                        caseComponentName,
-                        componentAttributes,
-                        caseFormTargetElement,
-                        function(cmp) {
-                            console.log('Case form component created');
-                        }
-                    );
-                },
-                LightningEndPoint
-            );
-        });
-
-        // Close the modal when the close button is clicked
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('caseModal').style.display = 'none';
-        });
-
-        // Close the modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('caseModal')) {
-                document.getElementById('caseModal').style.display = 'none';
-            }
-        };
     </script>
 </html>
