@@ -46,9 +46,6 @@
     <!-- Main container for the Lightning components -->
     <div data-lightning-out="true"></div>
 
-    <!-- Link to open the modal -->
-    <h3>Contact Form</h3>
-    <div id="contactFormContainer"></div>
     
     <!-- "Have Queries?" link -->
     <a href="javascript:void(0);" id="queriesLink">Have Queries?</a>
@@ -64,12 +61,16 @@
 
     <script>
         const appName = 'c:LightningOutApp';
-        const contactComponentName = 'c:contactForms';  // Contact form component
+        const componentName = 'c:contactForms';
+        const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/';
+        const targetElement = document.querySelector('[data-lightning-out="true"]');
+        const componentAttributes = {};
+
+
         const caseComponentName = 'c:caseForm';        // Case form component
         const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/';
-        const contactFormTargetElement = document.querySelector('[data-lightning-out="true"]');
         const caseFormTargetElement = document.querySelector('#caseFormContainer');
-        const componentAttributes = {};
+
 
         // Load Contact Form Component
         $Lightning.use(
