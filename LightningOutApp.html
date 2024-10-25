@@ -60,8 +60,10 @@
     <script>
         const appName = 'c:LightingOutApp';
         const componentName = 'c:contactForms';
+         const caseComponentName ='c:caseForm';
         const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/';
         const targetElement = document.querySelector('[data-lightning-out="true"]');
+          const caseFormTargetElement = document.querySelector('#caseFormContainer');
         const componentAttributes = {};
 
         $Lightning.use(
