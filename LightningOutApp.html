@@ -1,9 +1,61 @@
 <html>
+
+     <style>
+        h3 {
+            color: orange;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
     
     <script src="https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/lightning/lightning.out.js"></script>
 
     <!-- Correcting the target div -->
     <div data-lightning-out="true"></div>
+    
+    <a href="javascript:void(0);" id="queriesLink">Have Queries?</a>
+
+     <!-- Modal for submitting a case -->
+    <div id="caseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Submit a Case</h3>
+            <div id="caseFormContainer"></div>
+        </div>
+    </div>
 
     <script>
         const appName = 'c:LightingOutApp';
