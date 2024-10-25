@@ -1,6 +1,5 @@
 <html>
-
-     <style>
+    <style>
         h3 {
             color: orange;
         }
@@ -38,7 +37,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
     </style>
     
     <script src="https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/lightning/lightning.out.js"></script>
@@ -48,7 +46,7 @@
     
     <a href="javascript:void(0);" id="queriesLink">Need Customer Support Help?</a>
 
-     <!-- Modal for submitting a case -->
+    <!-- Modal for submitting a case -->
     <div id="caseModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -60,11 +58,13 @@
     <script>
         const appName = 'c:LightingOutApp';
         const componentName = 'c:contactForms';
-         const caseComponentName ='c:caseForm';
+        const caseComponentName = 'c:caseForm';
         const LightningEndPoint = 'https://edvenswatech-dev-ed.develop.my.site.com/lgngapp/';
         const targetElement = document.querySelector('[data-lightning-out="true"]');
-          const caseFormTargetElement = document.querySelector('#caseFormContainer');
+        const caseFormTargetElement = document.querySelector('#caseFormContainer');
         const componentAttributes = {};
+        
+        let caseFormLoaded = false;
 
         $Lightning.use(
             appName,
@@ -74,33 +74,36 @@
                     componentAttributes,
                     targetElement,
                     function(cmp) {
-                        console.log('lightning component created');
+                        console.log('Lightning component created');
                     }
                 );
             },
             LightningEndPoint
         );
 
-           // Event listener to open the "Have Queries?" modal
+        // Event listener to open the "Have Queries?" modal
         document.getElementById('queriesLink').addEventListener('click', function() {
             // Display the modal
             document.getElementById('caseModal').style.display = 'block';
 
-            // Load Case Form Component inside the modal
-            $Lightning.use(
-                appName,
-                function() {
-                    $Lightning.createComponent(
-                        caseComponentName,
-                        componentAttributes,
-                        caseFormTargetElement,
-                        function(cmp) {
-                            console.log('Case form component created');
-                        }
-                    );
-                },
-                LightningEndPoint
-            );
+            // Load Case Form Component inside the modal if it hasn't been loaded
+            if (!caseFormLoaded) {
+                $Lightning.use(
+                    appName,
+                    function() {
+                        $Lightning.createComponent(
+                            caseComponentName,
+                            componentAttributes,
+                            caseFormTargetElement,
+                            function(cmp) {
+                                console.log('Case form component created');
+                                caseFormLoaded = true;
+                            }
+                        );
+                    },
+                    LightningEndPoint
+                );
+            }
         });
 
         // Close the modal when the close button is clicked
